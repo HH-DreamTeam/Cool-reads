@@ -1,46 +1,23 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout.html}">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+
 <body>
-	<div layout:fragment="content">
+  <div layout:fragment="content">
     <div>
       <h1>Add a reading recommendation</h1>
-      <form
-        action="#"
-        th:action="@{/add-recommendation}"
-        th:object="${recommendation}"
-        method="post"
-      >
+      <form action="#" th:action="@{/add-recommendation}" th:object="${recommendation}" method="post">
         <label for="title">Title:</label><br />
-        <input
-          type="text"
-          id="title"
-          name="title"
-          class="input-field"
-          required
-        /><br />
+        <input type="text" id="title" name="title" class="input-field" required /><br />
         <label for="link">Link:</label><br />
-        <input
-          type="url"
-          id="link"
-          name="link"
-          class="input-field"
-          pattern="https?://.*"
-          required
-        /><br />
+        <input type="url" id="link" name="link" class="input-field" pattern="https?://.*" required /><br />
         <label for="desc">Description:</label><br />
-        <textarea
-          id="desc"
-          name="description"
-          class="input-field"
-          required
-        ></textarea
-        ><br />
+        <textarea id="desc" name="description" class="input-field" required></textarea><br />
         <input type="submit" value="Add" class="btn btn-primary" />
         <input type="reset" value="Cancel" class="btn btn-secondary" />
       </form>
     </div>
   </div>
-	</div>
+  </div>
 </body>
+
 </html>
