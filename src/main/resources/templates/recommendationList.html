@@ -15,7 +15,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="recommendation : ${ReadingRecommendation}">
+            <tr th:each="recommendation : ${recommendations}">
                 <td th:text="${recommendation.title}"></td>
                 <td th:text="${recommendation.link}"></td>
                 <td th:text="${recommendation.description}"></td>
