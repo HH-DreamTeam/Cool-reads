@@ -18,7 +18,8 @@
                     <td><a th:href="${recommendation.link}" th:text="${recommendation.link}">Link</a></td>
                     <td th:text="${recommendation.description}">Description</td>
                     <td>
-                        <a th:href="@{/recommendations/edit/{id}(id=${recommendation.id})}" class="btn btn-primary">Edit</a>
+                        <a th:href="@{/recommendations/edit/{id}(id=${recommendation.id})}"
+                            class="btn btn-primary">Edit</a>
                     </td>
                 </tr>
             </tbody>
