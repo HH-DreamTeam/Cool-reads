@@ -20,14 +20,13 @@ public class MessageController {
 	@Autowired
 	private MessageRepository messageRepository;
 
-	@GetMapping("/")
+	@GetMapping("/messages")
 	public String listMessages(Model model) {
 		List<Message> messages = messageRepository.findAll();
 		model.addAttribute("messages", messages);
-
-		return "messagelist";
+		return "messageList";
 	}
-	
+
 	@GetMapping("/react-messages")
 	public String renderReactMessageList(Model model) {
 		return "reactmessagelist";
