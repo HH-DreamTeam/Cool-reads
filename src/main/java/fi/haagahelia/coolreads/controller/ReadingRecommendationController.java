@@ -71,4 +71,10 @@ public class ReadingRecommendationController {
         return "redirect:/";
     }
 
+    @PostMapping("/recommendations/{id}/delete")
+    public String deleteRecommendation(@PathVariable Long id) {
+        recommendationRepository.deleteById(id);
+        return "redirect:/";
+    }
+
 }
