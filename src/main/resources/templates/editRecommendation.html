@@ -6,17 +6,17 @@
     <div layout:fragment="content">
         <h1 th:text="'Edit ' + ${recommendation.title}">Edit</h1>
         <form th:action="@{/recommendations/edit/{id}(id=${recommendation.id})}" th:object="${recommendation}" method="post">
-            <label for="title">Title:</label>
+            <label for="title">Title:</label><br />
             <input type="text" th:field="*{title}" th:value="${recommendation.title}" required><br>
 
-            <label for="link">Link:</label>
+            <label for="link">Link:</label><br />
             <input type="text" th:field="*{link}" th:value="${recommendation.link}" pattern="https?://.*" required><br>
 
-            <label for="description">Description:</label>
+            <label for="description">Description:</label><br />
             <textarea th:field="*{description}" th:value="${recommendation.description}" required></textarea><br>
 
             <input type="submit" value="Edit" class="btn btn-primary" />
-            <input type="reset" value="Cancel" class="btn btn-secondary" />
+            <a href="/" class="btn btn-secondary">Cancel</a>
         </form>
     </div>
 </body>
