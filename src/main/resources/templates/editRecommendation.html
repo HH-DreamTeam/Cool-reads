@@ -5,7 +5,7 @@
 <body>
     <div layout:fragment="content">
         <h1 th:text="'Edit ' + ${recommendation.title}">Edit</h1>
-        <form th:action="@{/edit-recommendation}" th:object="${recommendation}" method="post">
+        <form th:action="@{/recommendations/edit/{id}(id=${recommendation.id})}" th:object="${recommendation}" method="post">
             <label for="title">Title:</label>
             <input type="text" th:field="*{title}" th:value="${recommendation.title}" required><br>
 
