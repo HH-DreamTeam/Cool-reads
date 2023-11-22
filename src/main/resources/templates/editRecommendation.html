@@ -1,23 +1,37 @@
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout.html}"
->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout.html}">
+
 <body>
     <div layout:fragment="content">
-        <h1 th:text="'Edit ' + ${recommendation.title}">Edit</h1>
-        <form th:action="@{/recommendations/edit/{id}(id=${recommendation.id})}" th:object="${recommendation}" method="post">
-            <label for="title">Title:</label><br />
-            <input type="text" th:field="*{title}" th:value="${recommendation.title}" required><br>
+        <div class="container mt-4">
+            <h1 th:text="'Edit &quot;' + ${recommendation.title} + '&quot;'">Edit "Recommendation Title"</h1>
+            <form th:action="@{/recommendations/edit/{id}(id=${recommendation.id})}" th:object="${recommendation}"
+                method="post">
 
-            <label for="link">Link:</label><br />
-            <input type="text" th:field="*{link}" th:value="${recommendation.link}" pattern="https?://.*" required><br>
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title:</label><br />
+                    <input type="text" class="form-control" th:field="*{title}" th:value="${recommendation.title}"
+                        required><br>
+                </div>
 
-            <label for="description">Description:</label><br />
-            <textarea th:field="*{description}" th:value="${recommendation.description}" required></textarea><br>
+                <div class="mb-3">
+                    <label for="link" class="form-label">Link:</label><br />
+                    <input type="text" class="form-control" th:field="*{link}" th:value="${recommendation.link}"
+                        pattern="https?://.*" required><br>
+                </div>
 
-            <input type="submit" value="Edit" class="btn btn-primary" />
-            <a href="/" class="btn btn-secondary">Cancel</a>
-        </form>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description:</label><br />
+                    <textarea class="form-control" th:field="*{description}" th:value="${recommendation.description}"
+                        required></textarea><br>
+                </div>
+
+                <input type="submit" value="Edit" class="btn btn-primary" />
+                <a href="/" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
     </div>
 </body>
+
 </html>
