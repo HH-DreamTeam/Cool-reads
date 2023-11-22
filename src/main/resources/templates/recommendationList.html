@@ -21,6 +21,11 @@
                         <a th:href="@{/recommendations/edit/{id}(id=${recommendation.id})}"
                             class="btn btn-primary">Edit</a>
                     </td>
+                    <td>
+                        <form th:action="@{/recommendations/{id}/delete(id = ${recommendation.id})}" method="post">
+                         <button class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             </tbody>
         </table>
