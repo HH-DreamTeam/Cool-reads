@@ -1,0 +1,23 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}"
+>
+<body>
+    <div layout:fragment="content">
+        <h1 th:text="'Edit ' + ${recommendation.title}">Edit</h1>
+        <form th:action="@{/edit-recommendation}" th:object="${recommendation}" method="post">
+            <label for="title">Title:</label>
+            <input type="text" th:field="*{title}" th:value="${recommendation.title}" required><br>
+
+            <label for="link">Link:</label>
+            <input type="text" th:field="*{link}" th:value="${recommendation.link}" pattern="https?://.*" required><br>
+
+            <label for="description">Description:</label>
+            <textarea th:field="*{description}" th:value="${recommendation.description}" required></textarea><br>
+
+            <input type="submit" value="Edit" class="btn btn-primary" />
+            <input type="reset" value="Cancel" class="btn btn-secondary" />
+        </form>
+    </div>
+</body>
+</html>
