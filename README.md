@@ -10,6 +10,7 @@ This is a web application designed for avid readers who want to organize and sha
 ## Backlogs
 - [Product Backlog](https://github.com/orgs/HH-DreamTeam/projects/4)
 - [Sprint 1 Backlog](https://github.com/orgs/HH-DreamTeam/projects/5)
+- [Sprint 2 Backlog](https://github.com/orgs/HH-DreamTeam/projects/6)
 
 ## Usage guide
 - To use this programm you need Spring boot version 3 and Java version 17 or higher.
