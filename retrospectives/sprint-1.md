@@ -2,11 +2,12 @@
 
 ## Issues
 
-- The Spring Boot application won't start on my computer.
-- I always have conflicts when I try to pull code from the GitHub.
+- The Maven project not starting.
+- Uneven team contribution.
+- Version control conflicts.
 
 ## Actions
 
-- Fix the broken Spring Boot setups together.
-- Pull code from GitHub more often.
-- Create smaller commits and push code to GitHub more often.
+- Fixed the problem in the first days.
+- Pull code from GitHub more often and pushing little bits of code rather than big junks.
+- Assigning tasks for each team member.
