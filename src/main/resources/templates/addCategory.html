@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+
+<body>
+    <div layout:fragment="content">
+        <div class="container mt-4">
+            <h1>Add a Category</h1>
+            <form action="#" th:action="@{/add-category}" th:object="${category}" method="post">
+                <div class="mb-3">
+                    <label for="name">Category Name:</label>
+                    <input type="text" id="name" th:field="*{name}" class="form-control" required />
+                </div>
+
+                <input type="submit" value="Add" class="btn btn-primary" />
+                <a href="/add-category" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>
