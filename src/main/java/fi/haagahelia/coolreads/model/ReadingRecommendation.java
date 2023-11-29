@@ -1,5 +1,7 @@
 package fi.haagahelia.coolreads.model;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+import java.util.Date;
 
 @Entity
 public class ReadingRecommendation {
@@ -24,6 +27,10 @@ public class ReadingRecommendation {
     @NotBlank(message = "Description cannot be blank")
     @Column(length = 1000)
     private String description;
+
+    @CreationTimestamp
+    @Column(name = "created_at", updatable = false)
+    private Date createdAt;
 
     public ReadingRecommendation() {
     }
@@ -66,10 +73,18 @@ public class ReadingRecommendation {
         this.description = description;
     }
 
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
     @Override
     public String toString() {
         return "ReadingRecommendation [id=" + id + ", title=" + title + ", link=" + link + ", description="
-                + description + "]";
+                + description + ", createdAt=" + createdAt + "]";
     }
 
 }
