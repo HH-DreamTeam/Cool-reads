@@ -9,6 +9,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+
+import java.time.Instant;
 import java.util.Date;
 
 @Entity
@@ -30,7 +32,7 @@ public class ReadingRecommendation {
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
-    private Date createdAt;
+    private Instant createdAt;
 
     public ReadingRecommendation() {
     }
@@ -73,11 +75,11 @@ public class ReadingRecommendation {
         this.description = description;
     }
 
-    public Date getCreatedAt() {
+    public Instant getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
     }
 

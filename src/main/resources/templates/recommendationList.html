@@ -10,6 +10,7 @@
                     <th>Title</th>
                     <th>Link</th>
                     <th>Description</th>
+                    <th>Added on</th>
                 </tr>
             </thead>
             <tbody>
@@ -17,6 +18,7 @@
                     <td th:text="${recommendation.title}">Title</td>
                     <td><a th:href="${recommendation.link}" th:text="${recommendation.link}">Link</a></td>
                     <td th:text="${recommendation.description}">Description</td>
+                    <td th:text="${#temporals.format(recommendation.createdAt,'dd.MM.yyyy')}"></td>
                     <td>
                         <a th:href="@{/recommendations/edit/{id}(id=${recommendation.id})}"
                             class="btn btn-primary">Edit</a>
