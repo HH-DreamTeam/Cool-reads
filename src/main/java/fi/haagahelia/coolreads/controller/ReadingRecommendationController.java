@@ -38,7 +38,7 @@ public class ReadingRecommendationController {
 
     @GetMapping("/")
     public String listRecommendations(Model model) {
-        List<ReadingRecommendation> recommendations = recommendationRepository.findAll();
+        List<ReadingRecommendation> recommendations = recommendationRepository.findAllByOrderByCreatedAtDesc();
         model.addAttribute("recommendations", recommendations);
         return "recommendationList";
     }
