@@ -1,5 +1,7 @@
 package fi.haagahelia.coolreads.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,5 +33,12 @@ public class CategoryController {
         }
         categoryRepository.save(category);
         return "redirect:/";
+    }
+
+    @GetMapping("/categories")
+    public String listCategories(Model model) {
+        List<Category> categories = categoryRepository.findAll();
+        model.addAttribute("categories", categories);
+        return "categoryList";
     }
 }
