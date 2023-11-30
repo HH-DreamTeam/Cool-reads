@@ -10,23 +10,31 @@
                 method="post">
 
                 <div class="mb-3">
-                    <label for="title" class="form-label">Title:</label><br />
+                    <label for="title" class="form-label">Title</label><br />
                     <input type="text" class="form-control" th:field="*{title}" th:value="${recommendation.title}"
                         required><br>
                 </div>
 
                 <div class="mb-3">
-                    <label for="link" class="form-label">Link:</label><br />
+                    <label for="link" class="form-label">Link</label><br />
                     <input type="text" class="form-control" th:field="*{link}" th:value="${recommendation.link}"
                         pattern="https?://.*" required><br>
                 </div>
 
                 <div class="mb-3">
-                    <label for="description" class="form-label">Description:</label><br />
+                    <label for="description" class="form-label">Description</label><br />
                     <textarea class="form-control" th:field="*{description}" th:value="${recommendation.description}"
                         required></textarea><br>
                 </div>
 
+                <label for="categorySelect">Category</label>
+                <select class="form-select" th:field="*{category}" required>
+                    <option value="" th:each="category : ${categories}" th:value="${category.id}"
+                        th:text="${category.name}">Category
+                    </option>
+                </select>
+
+                <br>
                 <input type="submit" value="Edit" class="btn btn-primary" />
                 <a href="/" class="btn btn-secondary">Cancel</a>
             </form>
