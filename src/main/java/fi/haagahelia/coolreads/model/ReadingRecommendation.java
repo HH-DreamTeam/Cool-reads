@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
@@ -33,6 +35,10 @@ public class ReadingRecommendation {
     @Column(name = "created_at", updatable = false)
     private Instant createdAt;
 
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
     public ReadingRecommendation() {
     }
 
@@ -41,7 +47,15 @@ public class ReadingRecommendation {
         this.link = link;
         this.description = description;
     }
+    
+    public Category getCategory() {
+        return category;
+    }
 
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+    
     public Long getId() {
         return id;
     }
@@ -81,6 +95,8 @@ public class ReadingRecommendation {
     public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
     }
+
+    
 
     @Override
     public String toString() {
