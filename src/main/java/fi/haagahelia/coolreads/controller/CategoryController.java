@@ -37,7 +37,7 @@ public class CategoryController {
 
     @GetMapping("/categories")
     public String listCategories(Model model) {
-        List<Category> categories = categoryRepository.findAll();
+        List<Category> categories = categoryRepository.findAllByOrderByNameAsc();
         model.addAttribute("categories", categories);
         return "categoryList";
     }
