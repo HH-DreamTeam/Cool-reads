@@ -1,40 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{layout.html}">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+
+<head>
+    <script th:src="@{/frontend/renderRecommendationList.js}" defer></script>
+</head>
 
 <body>
     <div layout:fragment="content">
-        <h1>Reading Recommendations</h1>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Link</th>
-                    <th>Description</th>
-                    <th>Category</th>
-                    <th>Added on</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="recommendation : ${recommendations}">
-                    <td th:text="${recommendation.title}">Title</td>
-                    <td><a th:href="${recommendation.link}" th:text="${recommendation.link}">Link</a></td>
-                    <td th:text="${recommendation.description}">Description</td>
-                    <td th:text="${recommendation.category?.name}"></td>
-                    <td th:text="${#temporals.format(recommendation.createdAt,'dd.MM.yyyy')}"></td>
-                    <td>
-                        <a th:href="@{/recommendations/edit/{id}(id=${recommendation.id})}"
-                            class="btn btn-primary">Edit</a>
-                    </td>
-                    <td>
-                        <form th:action="@{/recommendations/{id}/delete(id = ${recommendation.id})}" method="post">
-                            <button class="btn btn-danger">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <a th:href="@{/add-recommendation}" class="btn btn-primary">Add a reading recommendation</a>
+        <div id="recommendationListRoot"></div>
     </div>
 </body>
 
