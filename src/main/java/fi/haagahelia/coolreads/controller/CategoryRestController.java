@@ -13,8 +13,11 @@ import fi.haagahelia.coolreads.model.Category;
 import fi.haagahelia.coolreads.model.ReadingRecommendation;
 import fi.haagahelia.coolreads.repository.CategoryRepository;
 import fi.haagahelia.coolreads.repository.ReadingRecommendationRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
+@Tag(name = "Category", description = "Information about categories and their reading recommendations")
 public class CategoryRestController {
 
     @Autowired
@@ -22,11 +25,19 @@ public class CategoryRestController {
     @Autowired
     private ReadingRecommendationRepository readingRecommendationRepository;
 
+    @Operation(
+        summary = "List of categories",
+        description = "Fetches all the categories"
+    )
     @GetMapping("/api/categories")
     public List<Category> getCategories() {
         return categoryRepository.findAllByOrderByNameAsc();
     }
 
+    @Operation(
+        summary = "List of a recommendations by category id",
+        description = "Lists all the reading recommendations of a category id"
+    )
     @GetMapping("/api/categories/{categoryId}/recommendations")
     public ResponseEntity<?> getRecommendationsByCategoryId(@PathVariable Long categoryId) {
 
