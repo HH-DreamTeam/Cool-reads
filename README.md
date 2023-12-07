@@ -18,5 +18,11 @@ This is a web application designed for avid readers who want to organize and sha
 2. After running the programm open you browser visit [http://localhost:8080](http://localhost:8080)
 3. Now you can use the programm to add new reading recommendations edit them or delete them.
 
+### How to download the JAR File
+1. Navigate to the release page. [Releases](https://github.com/HH-DreamTeam/Cool-reads/releases)
+2. Select the latest release.
+3. Download the cool-reads.jar file.
+4. Then run the command `java -jar <path-to-the-jar-file>`
+
 ## Documendation
 - Link to API documendation [SwaggerUI](http://localhost:8080/swagger-ui.html)
