@@ -26,6 +26,15 @@ export default function RecommendationList() {
   function handleCategoryFilterChange(event) {
     setSelectedCategoryId(event.target.value);
   }
+  function handleDelete(id, title) {
+    if (window.confirm(`Delete reading recommendation "${title}"?`)) {
+      fetch(`/api/recommendations/${id}`, {
+        method: "DELETE",
+      }).then(() => {
+        setRecommendations(recommendations.filter((rec) => rec.id !== id));
+      });
+    }
+  }
 
   return (
     <div>
@@ -60,6 +69,7 @@ export default function RecommendationList() {
             <RecommendationListItem
               key={recommendation.id}
               recommendation={recommendation}
+              onDelete={handleDelete}
             />
           ))}
         </tbody>
