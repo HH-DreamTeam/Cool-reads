@@ -6,21 +6,33 @@ export default function RecommendationList() {
   const [recommendations, setRecommendations] = useState([]);
 
   useEffect(() => {
-    fetchRecommendations().then((fetchedRecommendations) => setRecommendations(fetchedRecommendations));
+    fetchRecommendations().then(setRecommendations);
   }, []);
 
   return (
     <div>
-      <h1>Recommendations</h1>
-
-      <ul>
-        {recommendations.map((recommendation) => (
-          <RecommendationListItem recommendation={recommendation} key={recommendation.id} />
-        ))}
-      </ul>
-
+      <h1>Reading Recommendations</h1>
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Link</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Added on</th>
+          </tr>
+        </thead>
+        <tbody>
+          {recommendations.map((recommendation) => (
+            <RecommendationListItem
+              key={recommendation.id}
+              recommendation={recommendation}
+            />
+          ))}
+        </tbody>
+      </table>
       <a className="btn btn-primary" href="/add-recommendation">
-        Add a recommendation
+        Add a reading recommendation
       </a>
     </div>
   );
