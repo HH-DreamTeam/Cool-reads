@@ -1,16 +1,49 @@
 import React, { useEffect, useState } from "react";
 import RecommendationListItem from "./RecommendationListItem";
-import fetchRecommendations from "./fetchRecommendations";
+import fetchCategories from "./fetchCategories";
+import fetchRecommendations, {
+  fetchRecommendationsByCategory,
+} from "./fetchRecommendations";
 
 export default function RecommendationList() {
   const [recommendations, setRecommendations] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [selectedCategoryId, setSelectedCategoryId] = useState("any");
 
   useEffect(() => {
-    fetchRecommendations().then(setRecommendations);
+    fetchCategories().then(setCategories);
   }, []);
+
+  useEffect(() => {
+    const fetchRecommendationsData =
+      selectedCategoryId === "any"
+        ? fetchRecommendations
+        : () => fetchRecommendationsByCategory(selectedCategoryId);
+
+    fetchRecommendationsData().then(setRecommendations);
+  }, [selectedCategoryId]);
+
+  function handleCategoryFilterChange(event) {
+    setSelectedCategoryId(event.target.value);
+  }
 
   return (
     <div>
+      <div className="mb-3">
+        <label className="form-label">Filter by a category</label>
+        <select
+          className="form-select"
+          onChange={handleCategoryFilterChange}
+          value={selectedCategoryId}
+        >
+          <option value="any">Any category</option>
+          {categories.map((category) => (
+            <option value={category.id} key={category.id}>
+              {category.name}
+            </option>
+          ))}
+        </select>
+      </div>
       <h1>Reading Recommendations</h1>
       <table className="table">
         <thead>
