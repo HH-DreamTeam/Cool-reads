@@ -28,8 +28,8 @@ export default function RecommendationList() {
   }
   function handleDelete(id, title) {
     if (window.confirm(`Delete reading recommendation "${title}"?`)) {
-      fetch(`/api/recommendations/${id}`, {
-        method: "DELETE",
+      fetch(`/recommendations/${id}/delete`, {
+        method: "POST",
       }).then(() => {
         setRecommendations(recommendations.filter((rec) => rec.id !== id));
       });
