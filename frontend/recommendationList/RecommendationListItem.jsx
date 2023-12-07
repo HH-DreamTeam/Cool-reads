@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function RecommendationListItem(props) {
-  const { recommendation } = props;
+  const { recommendation,  onDelete} = props;
   const { id, title, link, description, category, createdAt } = recommendation;
 
   return (
@@ -21,11 +21,9 @@ export default function RecommendationListItem(props) {
         </a>
       </td>
       <td>
-        <form method="POST" action={`/recommendations/${id}/delete`}>
-          <button type="submit" className="btn btn-danger">
+          <button onClick={() => onDelete(id, title)} className="btn btn-danger">
             Delete
           </button>
-        </form>
       </td>
     </tr>
   );
