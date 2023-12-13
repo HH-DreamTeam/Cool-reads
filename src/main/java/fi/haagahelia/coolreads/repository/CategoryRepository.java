@@ -12,4 +12,5 @@ import fi.haagahelia.coolreads.model.Category;
 public interface CategoryRepository extends JpaRepository<Category, Long> {
     List<Category> findAllByOrderByNameAsc();
     Optional<Category> findById(Long id);
+    Optional<Category> findByName(String name);
 }
