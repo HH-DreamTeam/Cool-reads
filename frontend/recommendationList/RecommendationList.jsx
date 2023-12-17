@@ -1,39 +1,65 @@
 import React, { useEffect, useState } from "react";
 import RecommendationListItem from "./RecommendationListItem";
 import fetchCategories from "./fetchCategories";
-import fetchRecommendations, {
-  fetchRecommendationsByCategory,
-} from "./fetchRecommendations";
 
 export default function RecommendationList() {
   const [recommendations, setRecommendations] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategoryId, setSelectedCategoryId] = useState("any");
+  const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
     fetchCategories().then(setCategories);
+    fetchRecommendations(selectedCategoryId);
+    checkAuthentication();
   }, []);
 
   useEffect(() => {
-    const fetchRecommendationsData =
-      selectedCategoryId === "any"
-        ? fetchRecommendations
-        : () => fetchRecommendationsByCategory(selectedCategoryId);
-
-    fetchRecommendationsData().then(setRecommendations);
+    fetchRecommendations(selectedCategoryId);
   }, [selectedCategoryId]);
+
+  function fetchRecommendations(categoryId) {
+    let url = "/api/recommendations";
+    if (categoryId !== "any") {
+      url = `/api/categories/${categoryId}/recommendations`;
+    }
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => setRecommendations(data));
+  }
 
   function handleCategoryFilterChange(event) {
     setSelectedCategoryId(event.target.value);
   }
+
   function handleDelete(id, title) {
+    const csrfToken = document.getElementById("_csrf").getAttribute("content");
+
     if (window.confirm(`Delete reading recommendation "${title}"?`)) {
       fetch(`/recommendations/${id}/delete`, {
         method: "POST",
-      }).then(() => {
-        setRecommendations(recommendations.filter((rec) => rec.id !== id));
-      });
+        headers: {
+          "X-CSRF-TOKEN": csrfToken,
+        },
+      })
+        .then((response) => {
+          if (response.ok) {
+            setRecommendations(recommendations.filter((rec) => rec.id !== id));
+          } else {
+            console.error("Delete failed");
+          }
+        })
+        .catch((error) => console.error("Error:", error));
     }
+  }
+
+  function checkAuthentication() {
+    fetch("/api/users/current")
+      .then((response) => response.json())
+      .then((data) => {
+        setCurrentUser(data);
+      })
+      .catch(() => setCurrentUser(null));
   }
 
   return (
@@ -61,6 +87,7 @@ export default function RecommendationList() {
             <th>Link</th>
             <th>Description</th>
             <th>Category</th>
+            <th>Added by</th>
             <th>Added on</th>
           </tr>
         </thead>
@@ -69,14 +96,17 @@ export default function RecommendationList() {
             <RecommendationListItem
               key={recommendation.id}
               recommendation={recommendation}
+              currentUser={currentUser}
               onDelete={handleDelete}
             />
           ))}
         </tbody>
       </table>
-      <a className="btn btn-primary" href="/add-recommendation">
-        Add a reading recommendation
-      </a>
+      {currentUser && (
+        <a className="btn btn-primary" href="/add-recommendation">
+          Add a reading recommendation
+        </a>
+      )}
     </div>
   );
 }
