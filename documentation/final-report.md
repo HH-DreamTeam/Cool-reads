@@ -1,1 +1,3 @@
 # Final Report
+## Eetu Alanen
+- I had some problems in code not working and getting a few conflicts in github. Also some problems in managing the work. The code bugs were quite fast fixes and the conflicts too, for the problem managing the work we didn't get a good solution. I think as a team we succeeded in communicating what exercises were done! There was room to improve on the managing the work load to be even for everyone. I feel that I got alot out of this course! Just the fact that it felt like working in a real life working team! Also learned alot about git and github! I feel that everything was relevant on the course and I don't know what to add.
