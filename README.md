@@ -28,3 +28,5 @@ This is a web application designed for avid readers who want to organize and sha
 ## Documendation
 - Link to API documendation [SwaggerUI](http://localhost:8080/swagger-ui.html)
 - Link to [Final-report](https://github.com/HH-DreamTeam/Cool-reads/blob/main/documentation/final-report.md)
+## License
+- Link to [MIT Licensed](https://github.com/HH-DreamTeam/Cool-reads?tab=MIT-1-ov-file)
