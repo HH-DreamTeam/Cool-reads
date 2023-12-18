@@ -38,18 +38,19 @@ public class ReadingRecommendationRestControllerTest {
 
     @Test
     public void getRecommendationsReturnsListOfRecommendationsWhenRecommendationsExist() throws Exception {
-        ReadingRecommendation firstRecommendation = new ReadingRecommendation("Title1", "http://wikipedia.com", "First description");
-        ReadingRecommendation secondRecommendation = new ReadingRecommendation("Title2", "http://javapoint.com", "Second Description");
+        ReadingRecommendation firstRecommendation = new ReadingRecommendation("Spring Boot", "https://spring.io/projects/spring-boot", "Create stand-alone Spring applications");
+        ReadingRecommendation secondRecommendation = new ReadingRecommendation("Javapoint", "http://www.javapoint.com", "Free Online Tutorials");
         recommendationRepository.saveAll(List.of(firstRecommendation, secondRecommendation));
 
         mockMvc.perform(get("/api/recommendations"))
                .andExpect(status().isOk())
                .andExpect(jsonPath("$", hasSize(2)))
-               .andExpect(jsonPath("$[0].title").value("Title1"))
-               .andExpect(jsonPath("$[0].link").value("http://wikipedia.com"))
-               .andExpect(jsonPath("$[0].description").value("First description"))
-               .andExpect(jsonPath("$[1].title").value("Title2"))
-               .andExpect(jsonPath("$[1].link").value("http://javapoint.com"))
-               .andExpect(jsonPath("$[1].description").value("Second Description"));
+               .andExpect(jsonPath("$[0].title").value("Javapoint"))
+               .andExpect(jsonPath("$[0].link").value("http://www.javapoint.com"))
+               .andExpect(jsonPath("$[0].description").value("Free Online Tutorials"))
+               .andExpect(jsonPath("$[1].title").value("Spring Boot"))
+               .andExpect(jsonPath("$[1].link").value("https://spring.io/projects/spring-boot"))
+               .andExpect(jsonPath("$[1].description").value("Create stand-alone Spring applications"));
+               
     }
 }
